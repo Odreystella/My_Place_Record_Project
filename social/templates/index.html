@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock head %}
+
+{% block content %}
+<h3>MAIN UI</h3>
+<div class="main border">
+    <h3 class="heading">My Place Record</h3>
+    <div class="container">
+        <div class="place border flex">
+            <div class="nav border flex">
+                <span class="count"><span class="num">{31}</span>spots</span>
+                <ul class="menu">
+                    <li>전체</li>
+                    <li>맛집</li>
+                    <li>카페</li>
+                    <li>공원</li>
+                </ul>
+            </div>
+            <div class="post border">내용</div>
+        </div>
+        <div class="user border flex">
+            <div class="profile border flex">
+                <form class="login-form" action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" placeholder="ID"><br>
+                    <input type="password" placeholder="PASSWORD"><br>
+                    <button class="btn-login">로그인</button>
+                </form>
+                <a class="signup" href="">회원가입</a>
+            </div>
+            <div class="follow border">팔로우</div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
