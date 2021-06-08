@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from social.views import IndexView
+from social.views import CategoryListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
+    path('', CategoryListView.as_view(), name='index'),
+    path('member/', include('member.urls')),
+    path('place/', include('place.urls')),
+    path('social/', include('social.urls')),
 ]

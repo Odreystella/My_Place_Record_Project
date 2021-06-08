@@ -10,9 +10,10 @@
 .heading {
     color: white; 
     font-weight: bold; 
-    font-size: 1.3rem; 
+    font-size: 1.5rem; 
     position: absolute; 
     left: 20px;
+    margin: 10px 0;
 }
 .container {
     display: flex;  
