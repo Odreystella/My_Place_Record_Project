@@ -32,7 +32,7 @@ class Place(BaseField):
 
 class Photo(models.Model):
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True, blank=True, related_name='photo')
-    # image = models.ImageField(upload_to='image/', blank=True, null=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
 
 class Comment(BaseField):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='comment')
