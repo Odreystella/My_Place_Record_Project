@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View, generic
 
-from place.models import Category
+from place.models import Category, Place
 from place.services import PostService
 from place.dto import AddDto
 
 # Create your views here.
-class PostDetailView(generic.DetailView):
+class CategoryDetailView(generic.DetailView):
     model = Category
     context_object_name = 'category'
     template_name = 'place_post.html'
@@ -15,6 +15,12 @@ class PostDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['posts'] = PostService.find_by_post(self.kwargs['pk'])
         return context
+
+class PostDetailView(generic.DetailView):
+    model = Place
+    context_object_name = 'post'
+    template_name = 'place_detail.html'
+
 
 class PostAddView(View):
     def get(self, request, *args, **kwargs):

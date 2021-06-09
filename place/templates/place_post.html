@@ -16,17 +16,16 @@
                 <ul class="menu">
                     <li>{{category.name}}</a></li>
                 </ul>
-                <a href="{% url 'place:post-add' category.pk %}" class="btn-add">{{category.name}}추가</a>
+                <a href="{% url 'place:add' category.pk %}" class="btn-add">{{category.name}}추가</a>
             </div>
             <div class="post border">내용
                 <ul>
                     {% for post in posts %}
-                    <li>
+                    <li><a href="{% url 'place:detail' post.pk %}">
                         {{post.name}}<br>
                         {{post.location}}<br>
                         {{post.stars}}
-                    
-                    </li>
+                    </li></a>
                     {% endfor %}
                 </ul>
             </div>

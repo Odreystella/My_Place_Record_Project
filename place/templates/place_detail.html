@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<title>장소 POST 디테일</title>
+<!-- <link rel="stylesheet" href="{% static 'index.css' %}"> -->
+{% endblock head %}
+
+{% block content %}
+<div class="main border">
+    <h3 class="heading"><a href="{% url 'index' %}">My Place Record</a></h3>
+    <h3>- 장소 POST 상세 페이지 -</h3>
+    <div class="container">
+        <ul>
+            <li>{{post.name}}</li>
+            <li>{{post.location}}</li>
+            <li>{{post.stars}}</li>
+            <li>
+                메모<br>
+                {{post.memo}}
+            </li>
+            <li>
+                베스트 메뉴<br>
+                {{post.best_menu}}
+            </li>
+            <li>
+                추가정보<br>
+                {{post.additional_info}}
+            </li>
+            <li>
+                사진<br>
+            </li>
+        </ul>
+        <a href="">수정</a>
+        <a href="">삭제</a>
+    </div>
+</div>
+{% endblock content %}

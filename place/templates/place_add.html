@@ -15,7 +15,7 @@
     <h3 class="heading"><a href="{% url 'index' %}">My Place Record</a></h3>
     <h3>- 장소 POST 추가 폼 -</h3>
     <div class="container">
-        <form action="{% url 'place:post-add' category.pk%}" method="POST" enctype="multipart/form-data"> <!--이미지 post할 때 추가하는 속성-->
+        <form action="{% url 'place:add' category.pk%}" method="POST" enctype="multipart/form-data"> <!--이미지 post할 때 추가하는 속성-->
             {% csrf_token %}
             <label for="name">장소</label>
             <input type="text" id="name" name="name">
@@ -32,10 +32,10 @@
             <label for="additional_info">정보</label>
             <select id="additional_info" name="additional_info">
                 <option value="default" selected>추가정보를 선택하세요</option>
-                <option value="parking">주차장 있음</option>
-                <option value="allday">매일 영업</option>
-                <option value="pet-friendly">반려동물 허용</option>
-                <option value="holiday">공휴일 휴무</option>
+                <option value="주차장 있음">주차장 있음</option>
+                <option value="매일 영업">매일 영업</option>
+                <option value="반려동뭉 허용">반려동물 허용</option>
+                <option value="공휴일 휴무">공휴일 휴무</option>
             </select>
             <br>
             <label for="stars">별점</label>
