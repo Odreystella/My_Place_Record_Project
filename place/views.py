@@ -3,7 +3,7 @@ from django.views import View, generic
 
 from place.models import Category, Place
 from place.services import PostService
-from place.dto import AddDto
+from place.dto import AddDto, UpdateDto
 
 # Create your views here.
 class CategoryDetailView(generic.DetailView):
@@ -52,4 +52,33 @@ class PostAddView(View):
             # tag=request.POST['tag'],
             # image=request.POST['image'],
             pk=self.kwargs['pk'],
+        )
+
+class PostEditView(View):
+    def get(self, request, *args, **kwargs):
+        post_pk = self.kwargs['pk']
+        post = PostService.get_post(post_pk)
+        context = {'post' : post}
+        return render(request, 'place_edit.html', context)
+
+    def post(self, request, *args, **kwargs):
+        post_pk = self.kwargs['pk']
+        post = PostService.get_post(post_pk)
+
+        update_dto = self._build_update_dto(request)
+        result = PostService.update(update_dto)
+        context = {'post' : post}
+        if result['error']['status']:
+            return render(request, 'place_edit.html', context)
+        return redirect('place:detail', post_pk)
+
+    def _build_update_dto(self, request):
+        return UpdateDto(
+            name=request.POST['name'],
+            location=request.POST['location'],
+            stars=request.POST['stars'],
+            memo=request.POST['memo'],
+            best_menu=request.POST['best_menu'],
+            additional_info=request.POST['additional_info'],
+            pk=self.kwargs['pk']
         )

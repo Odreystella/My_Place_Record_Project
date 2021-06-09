@@ -3,6 +3,9 @@
 {% load static %}
 {% block head %}
 <title>장소 POST 디테일</title>
+<style>
+    ul {padding: 0;}
+</style>
 <!-- <link rel="stylesheet" href="{% static 'index.css' %}"> -->
 {% endblock head %}
 
@@ -31,7 +34,7 @@
                 사진<br>
             </li>
         </ul>
-        <a href="">수정</a>
+        <a href="{% url 'place:edit' post.pk %}">수정</a>
         <a href="">삭제</a>
     </div>
 </div>

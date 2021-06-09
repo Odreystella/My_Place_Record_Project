@@ -16,3 +16,13 @@ class AddDto():
     # tag : str
 #    image : str 
     pk : str
+
+@dataclass
+class UpdateDto():
+    name : str
+    location : str
+    stars : str
+    memo : str
+    best_menu : str
+    additional_info : str
+    pk : str
