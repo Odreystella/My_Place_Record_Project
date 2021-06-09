@@ -12,7 +12,7 @@
     <div class="container">
         <div class="place border flex">
             <div class="nav border flex">
-                <span class="count"><span class="num">{31}</span>spots</span>
+                <span class="count"><span class="num">{{posts | length}}</span>spots</span>
                 <ul class="menu">
                     <li>전체</li>
                     {% for category in categories %}
@@ -20,7 +20,17 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div class="post border">내용</div>
+            <div class="post border">내용
+                <ul>
+                    {% for post in posts %}
+                    <li>
+                        {{post.name}}<br>
+                        {{post.location}}<br>
+                        {{post.stars}}<br>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
         <div class="user border flex">
             <div class="profile border flex">

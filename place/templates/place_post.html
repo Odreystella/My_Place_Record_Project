@@ -12,10 +12,11 @@
     <div class="container">
         <div class="place border flex">
             <div class="nav border flex">
-                <span class="count"><span class="num">{31}</span>spots</span>
+                <span class="count"><span class="num">{{posts | length}}</span>spots</span>
                 <ul class="menu">
                     <li>{{category.name}}</a></li>
                 </ul>
+                <a href="{% url 'place:post-add' category.pk %}" class="btn-add">{{category.name}}추가</a>
             </div>
             <div class="post border">내용
                 <ul>
@@ -24,6 +25,7 @@
                         {{post.name}}<br>
                         {{post.location}}<br>
                         {{post.stars}}
+                    
                     </li>
                     {% endfor %}
                 </ul>
