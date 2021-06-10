@@ -32,6 +32,9 @@
             </li>
             <li>
                 사진<br>
+                    {% for photo in post.photo.all %}
+                    <img src="{{photo.image.url}}" width="150" height="150" alt="">
+                    {% endfor %}
             </li>
         </ul>
         <a href="{% url 'place:edit' post.pk %}">수정</a>

@@ -1,7 +1,7 @@
 from place.dto import AddDto, UpdateDto
 from utils import build_error_msg, build_success_msg
 from django.contrib.auth.models import User
-from place.models import Category, Place, Comment, Tag
+from place.models import Category, Place, Comment, Tag, Photo
 
 class PostService():
     @staticmethod
@@ -38,6 +38,12 @@ class PostService():
             stars=dto.stars,
             # image=dto.image
         )
+        for image in dto.image:
+            Photo.objects.create(
+                place=place,
+                image=image
+            )
+
         # place.tags.add(dto.tag)
         return build_success_msg('')
 
@@ -46,7 +52,7 @@ class PostService():
         if not dto.name or not dto.location or not dto.stars or not dto.memo or not dto.best_menu or not dto.additional_info:
             return build_error_msg('MISSING_INPUT')
 
-        Place.objects.filter(pk=dto.pk).update(
+        place = Place.objects.filter(pk=dto.pk).update(
             name=dto.name,
             location=dto.location,
             stars=dto.stars,
@@ -54,4 +60,15 @@ class PostService():
             best_menu=dto.best_menu,
             additional_info=dto.additional_info,
         )
-        return build_success_msg('') 
+        if dto.image:
+            photo = Photo.objects.filter(place__pk=dto.pk).first()
+            photo.delete()
+                                
+            place = Place.objects.filter(pk=dto.pk).first()
+            for image in dto.image:
+                # print(image)
+                Photo.objects.filter(place__pk=dto.pk).create(
+                    place=place,
+                    image=image
+                )                
+            return build_success_msg('') 

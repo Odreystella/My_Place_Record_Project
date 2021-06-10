@@ -14,7 +14,7 @@ class AddDto():
     additional_info : str
     stars : str
     # tag : str
-#    image : str 
+    image : list 
     pk : str
 
 @dataclass
@@ -25,4 +25,5 @@ class UpdateDto():
     memo : str
     best_menu : str
     additional_info : str
+    image : list
     pk : str

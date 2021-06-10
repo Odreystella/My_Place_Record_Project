@@ -50,7 +50,7 @@ class PostAddView(View):
             additional_info=request.POST['additional_info'],
             stars=request.POST['stars'],
             # tag=request.POST['tag'],
-            # image=request.POST['image'],
+            image=request.FILES.getlist('image'),
             pk=self.kwargs['pk'],
         )
 
@@ -68,6 +68,7 @@ class PostEditView(View):
         update_dto = self._build_update_dto(request)
         result = PostService.update(update_dto)
         context = {'post' : post}
+        print(result)
         if result['error']['status']:
             return render(request, 'place_edit.html', context)
         return redirect('place:detail', post_pk)
@@ -80,5 +81,6 @@ class PostEditView(View):
             memo=request.POST['memo'],
             best_menu=request.POST['best_menu'],
             additional_info=request.POST['additional_info'],
+            image=request.FILES.getlist('image'),
             pk=self.kwargs['pk']
         )

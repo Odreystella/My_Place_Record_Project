@@ -15,7 +15,7 @@
     <h3 class="heading"><a href="{% url 'index' %}">My Place Record</a></h3>
     <h3>- 장소 POST 수정 페이지 -</h3>
     <div class="container">
-        <form action="{% url 'place:edit' post.pk %}" method="POST">
+        <form action="{% url 'place:edit' post.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <ul>
                 <li><input type="text" value="{{post.name}}" name="name"></li>
@@ -42,12 +42,13 @@
                         <option value="default" selected>{{post.additional_info}}</option>
                         <option value="주차장 있음">주차장 있음</option>
                         <option value="매일 영업">매일 영업</option>
-                        <option value="반려동뭉 허용">반려동물 허용</option>
+                        <option value="반려동물 허용">반려동물 허용</option>
                         <option value="공휴일 휴무">공휴일 휴무</option>
                     </select>
                 </li>
                 <li>
                     사진<br>
+                    <input type="file" id="image" name="image" multiple>
                 </li>
             </ul>
             <button type="submit">완료</button>
