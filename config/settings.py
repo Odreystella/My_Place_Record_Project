@@ -121,13 +121,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC'  # TIME_ZONE='Asia/Seoul' 시간대를 서울로 변경 가능
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = True    # 기본 시간대(UTC)를 사용하겠다는 의미
 
 
 # Static files (CSS, JavaScript, Images)
