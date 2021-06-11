@@ -11,6 +11,9 @@
 {% endblock head %}
 
 {% block content %}
+{% if error.status %}
+{{error.msg}}
+{% endif %}
 <div class="main border">
     <h3 class="heading"><a href="{% url 'index' %}">My Place Record</a></h3>
     <h3>- 장소 POST 추가 폼 -</h3>
