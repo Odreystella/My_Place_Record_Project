@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View, generic
+from django.contrib import messages
 
 from place.models import Category, Place
 from place.services import PostService
-from place.dto import AddDto, UpdateDto
+from place.dto import CreateDto, UpdateDto
 
 # Create your views here.
 class CategoryDetailView(generic.DetailView):
@@ -22,7 +23,7 @@ class PostDetailView(generic.DetailView):
     template_name = 'place_detail.html'
 
 
-class PostAddView(View):
+class PostCreateView(View):
     def get(self, request, *args, **kwargs):
         category_pk = self.kwargs['pk']
         category = PostService.find_by_category(category_pk)
@@ -31,16 +32,16 @@ class PostAddView(View):
 
     def post(self, request, *args, **kwargs):
         category_pk = self.kwargs['pk']
-        add_dto = self._build_add_dto(request)
-        result = PostService.create(add_dto)
+        create_dto = self._build_add_dto(request)
+        result = PostService.create(create_dto)
         context = { 'error' : result['error']}
         if result['error']['status']:
             return render(request, 'place_add.html', context)
         return redirect('place:post', category_pk)
 
-    def _build_add_dto(self, request):
+    def _build_create_dto(self, request):
         category = PostService.find_by_category(self.kwargs['pk'])
-        return AddDto(
+        return CreateDto(
             category=category,
             author=request.user,
             name=request.POST['name'],
@@ -54,7 +55,9 @@ class PostAddView(View):
             pk=self.kwargs['pk'],
         )
 
-class PostEditView(View):
+class PostUpdateView(View):
+    success_message = '게시글이 수정되었습니다.'
+
     def get(self, request, *args, **kwargs):
         post_pk = self.kwargs['pk']
         post = PostService.get_post(post_pk)
@@ -67,8 +70,13 @@ class PostEditView(View):
 
         update_dto = self._build_update_dto(request)
         result = PostService.update(update_dto)
-        context = {'post' : post}
+
+        if len(messages.get_messages(request)) == 0:
+            messages.success(self.request, self.success_message)
+        # messages.error(self.request, '알 수 없는 요청입니다.')
+
         print(result)
+        context = {'post' : post, 'error' : result['error']}
         if result['error']['status']:
             return render(request, 'place_edit.html', context)
         return redirect('place:detail', post_pk)

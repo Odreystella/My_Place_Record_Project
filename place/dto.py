@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 @dataclass
-class AddDto():
+class CreateDto():
     category : Category
     author : User 
     name : str
