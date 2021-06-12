@@ -32,7 +32,7 @@ class PostCreateView(View):
 
     def post(self, request, *args, **kwargs):
         category_pk = self.kwargs['pk']
-        create_dto = self._build_add_dto(request)
+        create_dto = self._build_create_dto(request)
         result = PostService.create(create_dto)
         context = { 'error' : result['error']}
         if result['error']['status']:
