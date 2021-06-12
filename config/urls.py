@@ -21,9 +21,9 @@ from django.conf.urls.static import static
 from social.views import CategoryListView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', CategoryListView.as_view(), name='index'),
-    path('member/', include('member.urls')),
+    # path('member/', include('member.urls')),
     path('place/', include('place.urls')),
     path('social/', include('social.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

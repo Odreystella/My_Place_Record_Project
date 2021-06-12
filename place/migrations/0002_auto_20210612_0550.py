@@ -6,12 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('social', '0001_initial'),
+        ('place', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='relationship',
+            model_name='comment',
+            name='created_at',
+            field=models.TextField(default=1623477045.5202968),
+        ),
+        migrations.AlterField(
+            model_name='place',
             name='created_at',
             field=models.TextField(default=1623477045.5202968),
         ),
