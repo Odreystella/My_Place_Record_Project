@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'member',
     'place',
     'social',
+    'user',
 ]
 
 MIDDLEWARE = [
