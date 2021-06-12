@@ -82,7 +82,7 @@
 .login-form { 
     line-height: 1.6;
 }
-.signup, .btn-login {
+/* .btn-login {
     text-decoration: none;
     color: black;
     border: 1px solid grey;
@@ -91,9 +91,9 @@
     border-radius: 2px;
     padding: 2px 0;
     background-color: lightblue;
-}
-.btn-login {
+} */
+/* .btn-login, .signup {
     width: 185px;
     background-color: lightblue;
     border: 1px solid grey;
-}
+} */
